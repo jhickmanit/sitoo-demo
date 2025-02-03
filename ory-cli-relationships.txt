@@ -1,0 +1,12 @@
+NAMESPACE	OBJECT		RELATION NAME	SUBJECT
+Organizations	org1		execs		Roles:admin
+Roles		executive	members		byron
+PointOfSales	pos1		store		Stores:store1
+Stores		store1		managers	Roles:manager
+Roles		admin		members		karen
+Stores		store1		accounts	Accounts:account1
+Accounts	account1	admins		Roles:admin
+Roles		manager		members		sharon
+Roles		employee	members		aaron
+PointOfSales	pos1		employees	Roles:employee
+Accounts	account1	orgs		Roles:org1

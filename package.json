@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@ory/keto-namespace-types": "^0.13.0-alpha.0",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "namespace": "Roles",
+    "object": "employee",
+    "relation": "members",
+    "subject_id": "aaron"
+  },
+  {
+    "namespace": "Roles",
+    "object": "manager",
+    "relation": "members",
+    "subject_id": "sharon"
+  },
+  {
+    "namespace": "Roles",
+    "object": "admin",
+    "relation": "members",
+    "subject_id": "karen"
+  },
+  {
+    "namespace": "Roles",
+    "object": "executive",
+    "relation": "members",
+    "subject_id": "byron"
+  },
+  {
+    "namespace": "PointOfSales",
+    "object": "pos1",
+    "relation": "employees",
+    "subject_set": {
+      "namespace": "Roles",
+      "object": "employee"
+    }
+  },
+  {
+    "namespace": "PointOfSales",
+    "object": "pos1",
+    "relation": "store",
+    "subject_set": {
+      "namespace": "Stores",
+      "object": "store1"
+    }
+  },
+  {
+    "namespace": "Stores",
+    "object": "store1",
+    "relation": "managers",
+    "subject_set": {
+      "namespace": "Roles",
+      "object": "manager"
+    }
+  },
+  {
+    "namespace": "Stores",
+    "object": "store1",
+    "relation": "accounts",
+    "subject_set": {
+      "namespace": "Accounts",
+      "object": "account1"
+    }
+  },
+  {
+    "namespace": "Accounts",
+    "object": "account1",
+    "relation": "admins",
+    "subject_set": {
+      "namespace": "Roles",
+      "object": "admin"
+    }
+  },
+  {
+    "namespace": "Accounts",
+    "object": "account1",
+    "relation": "orgs",
+    "subject_set": {
+      "namespace": "Roles",
+      "object": "org1"
+    }
+  },
+  {
+    "namespace": "Organizations",
+    "object": "org1",
+    "relation": "execs",
+    "subject_set": {
+      "namespace": "Roles",
+      "object": "admin"
+    }
+  }
+]
