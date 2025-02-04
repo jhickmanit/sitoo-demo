@@ -1,17 +1,17 @@
-import { Namespace, SubjectSet, Context } from "@ory/keto-namespace-types";
+import { Namespace, Context } from "@ory/keto-namespace-types";
 
-class Users implements Namespace {}
+class User implements Namespace {}
 
-class Roles implements Namespace {
+class Role implements Namespace {
   related: {
-    members: (Users | Roles)[];
+    members: (User | Role)[];
   };
 }
 
 class PointOfSales implements Namespace {
   related: {
-    store: Stores[];
-    employees: Roles[];
+    store: Store[];
+    employees: Role[];
   };
 
   permits = {
@@ -21,27 +21,27 @@ class PointOfSales implements Namespace {
   };
 }
 
-class Stores implements Namespace {
+class Store implements Namespace {
   related: {
-    accounts: Accounts[];
-    managers: Roles[];
+    Account: Account[];
+    managers: Role[];
   };
 
   permits = {
     login: (ctx: Context): boolean =>
       this.related.managers.includes(ctx.subject) ||
-      this.related.accounts.traverse((a) => a.permits.login(ctx)),
+      this.related.Account.traverse((a) => a.permits.login(ctx)),
 
     manageStock: (ctx: Context): boolean =>
       this.related.managers.includes(ctx.subject) ||
-      this.related.accounts.traverse((a) => a.permits.manageStock(ctx)),
+      this.related.Account.traverse((a) => a.permits.manageStock(ctx)),
   };
 }
 
-class Accounts implements Namespace {
+class Account implements Namespace {
   related: {
-    orgs: Organizations[];
-    admins: Roles[];
+    orgs: Organization[];
+    admins: Role[];
   };
 
   permits = {
@@ -55,9 +55,9 @@ class Accounts implements Namespace {
   };
 }
 
-class Organizations implements Namespace {
+class Organization implements Namespace {
   related: {
-    execs: Roles[];
+    execs: Role[];
   };
 
   permits = {

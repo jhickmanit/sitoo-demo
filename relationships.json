@@ -1,34 +1,46 @@
 [
   {
-    "namespace": "Roles",
+    "namespace": "Role",
     "object": "employee",
     "relation": "members",
-    "subject_id": "aaron"
+    "subject_set": {
+      "namespace": "User",
+      "object": "aaron"
+    }
   },
   {
-    "namespace": "Roles",
+    "namespace": "Role",
     "object": "manager",
     "relation": "members",
-    "subject_id": "sharon"
+    "subject_set": {
+      "namespace": "User",
+      "object": "sharon"
+    }
   },
   {
-    "namespace": "Roles",
+    "namespace": "Role",
     "object": "admin",
     "relation": "members",
-    "subject_id": "karen"
+    "subject_set": {
+      "namespace": "User",
+      "object": "karen"
+    }
   },
   {
-    "namespace": "Roles",
+    "namespace": "Role",
     "object": "executive",
     "relation": "members",
-    "subject_id": "byron"
+    "subject_set": {
+      "namespace": "User",
+      "object": "byron"
+    }
   },
   {
     "namespace": "PointOfSales",
     "object": "pos1",
     "relation": "employees",
     "subject_set": {
-      "namespace": "Roles",
+      "namespace": "Role",
       "object": "employee"
     }
   },
@@ -37,52 +49,52 @@
     "object": "pos1",
     "relation": "store",
     "subject_set": {
-      "namespace": "Stores",
+      "namespace": "Store",
       "object": "store1"
     }
   },
   {
-    "namespace": "Stores",
+    "namespace": "Store",
     "object": "store1",
     "relation": "managers",
     "subject_set": {
-      "namespace": "Roles",
+      "namespace": "Role",
       "object": "manager"
     }
   },
   {
-    "namespace": "Stores",
+    "namespace": "Store",
     "object": "store1",
-    "relation": "accounts",
+    "relation": "Account",
     "subject_set": {
-      "namespace": "Accounts",
+      "namespace": "Account",
       "object": "account1"
     }
   },
   {
-    "namespace": "Accounts",
+    "namespace": "Account",
     "object": "account1",
     "relation": "admins",
     "subject_set": {
-      "namespace": "Roles",
+      "namespace": "Role",
       "object": "admin"
     }
   },
   {
-    "namespace": "Accounts",
+    "namespace": "Account",
     "object": "account1",
     "relation": "orgs",
     "subject_set": {
-      "namespace": "Roles",
+      "namespace": "Role",
       "object": "org1"
     }
   },
   {
-    "namespace": "Organizations",
+    "namespace": "Organization",
     "object": "org1",
     "relation": "execs",
     "subject_set": {
-      "namespace": "Roles",
+      "namespace": "Role",
       "object": "admin"
     }
   }
