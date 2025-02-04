@@ -1,11 +1,18 @@
-import { Namespace, Context } from "@ory/keto-namespace-types";
+import {Context, Namespace} from "@ory/keto-namespace-types";
 
-class User implements Namespace {}
+class User implements Namespace {
+}
 
 class Role implements Namespace {
   related: {
     members: (User | Role)[];
   };
+
+  permits = {
+    isMember: (ctx: Context): boolean =>
+      this.related.members.includes(ctx.subject), // ||
+      // this.related.members.traverse((m) => m.permits.isMember(ctx)),
+  }
 }
 
 class PointOfSales implements Namespace {
@@ -16,7 +23,7 @@ class PointOfSales implements Namespace {
 
   permits = {
     login: (ctx: Context): boolean =>
-      this.related.employees.includes(ctx.subject) ||
+      this.related.employees.traverse((r) => r.permits.isMember(ctx)) ||
       this.related.store.traverse((s) => s.permits.login(ctx)),
   };
 }
