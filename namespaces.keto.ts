@@ -1,7 +1,6 @@
-import {Context, Namespace} from "@ory/keto-namespace-types";
+import { Context, Namespace } from "@ory/keto-namespace-types";
 
-class User implements Namespace {
-}
+class User implements Namespace {}
 
 class Role implements Namespace {
   related: {
@@ -11,11 +10,11 @@ class Role implements Namespace {
   permits = {
     isMember: (ctx: Context): boolean =>
       this.related.members.includes(ctx.subject), // ||
-      // this.related.members.traverse((m) => m.permits.isMember(ctx)),
-  }
+    // this.related.members.traverse((m) => m.permits.isMember(ctx)),
+  };
 }
 
-class PointOfSales implements Namespace {
+class PointOfSale implements Namespace {
   related: {
     store: Store[];
     employees: Role[];
@@ -36,11 +35,11 @@ class Store implements Namespace {
 
   permits = {
     login: (ctx: Context): boolean =>
-      this.related.managers.includes(ctx.subject) ||
+      this.related.managers.traverse((r) => r.permits.isMember(ctx)) ||
       this.related.Account.traverse((a) => a.permits.login(ctx)),
 
     manageStock: (ctx: Context): boolean =>
-      this.related.managers.includes(ctx.subject) ||
+      this.related.managers.traverse((r) => r.permits.isMember(ctx)) ||
       this.related.Account.traverse((a) => a.permits.manageStock(ctx)),
   };
 }
@@ -53,11 +52,11 @@ class Account implements Namespace {
 
   permits = {
     login: (ctx: Context): boolean =>
-      this.related.admins.includes(ctx.subject) ||
+      this.related.admins.traverse((r) => r.permits.isMember(ctx)) ||
       this.related.orgs.traverse((a) => a.permits.login(ctx)),
 
     manageStock: (ctx: Context): boolean =>
-      this.related.admins.includes(ctx.subject) ||
+      this.related.admins.traverse((r) => r.permits.isMember(ctx)) ||
       this.related.orgs.traverse((o) => o.permits.manageStock(ctx)),
   };
 }
@@ -68,9 +67,10 @@ class Organization implements Namespace {
   };
 
   permits = {
-    login: (ctx: Context): boolean => this.related.execs.includes(ctx.subject),
+    login: (ctx: Context): boolean =>
+      this.related.execs.traverse((r) => r.permits.isMember(ctx)),
 
     manageStock: (ctx: Context): boolean =>
-      this.related.execs.includes(ctx.subject),
+      this.related.execs.traverse((r) => r.permits.isMember(ctx)),
   };
 }
