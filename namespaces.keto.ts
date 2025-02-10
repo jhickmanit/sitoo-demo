@@ -14,7 +14,7 @@ class Role implements Namespace {
   };
 }
 
-class PointOfSale implements Namespace {
+class PointOfSales implements Namespace {
   related: {
     store: Store[];
     employees: Role[];
@@ -31,6 +31,7 @@ class Store implements Namespace {
   related: {
     Account: Account[];
     managers: Role[];
+    employees: Role[];
   };
 
   permits = {

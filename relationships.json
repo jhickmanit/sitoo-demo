@@ -10,11 +10,20 @@
   },
   {
     "namespace": "Role",
-    "object": "manager",
+    "object": "managerStore1",
     "relation": "members",
     "subject_set": {
       "namespace": "User",
       "object": "sharon"
+    }
+  },
+  {
+    "namespace": "Role",
+    "object": "managerStore2",
+    "relation": "members",
+    "subject_set": {
+      "namespace": "User",
+      "object": "maron"
     }
   },
   {
@@ -54,12 +63,30 @@
     }
   },
   {
+    "namespace": "PointOfSales",
+    "object": "pos2",
+    "relation": "employees",
+    "subject_set": {
+      "namespace": "Role",
+      "object": "employee"
+    }
+  },
+  {
+    "namespace": "PointOfSales",
+    "object": "pos2",
+    "relation": "store",
+    "subject_set": {
+      "namespace": "Store",
+      "object": "store2"
+    }
+  },
+  {
     "namespace": "Store",
     "object": "store1",
     "relation": "managers",
     "subject_set": {
       "namespace": "Role",
-      "object": "manager"
+      "object": "managerStore1"
     }
   },
   {
@@ -69,6 +96,24 @@
     "subject_set": {
       "namespace": "Account",
       "object": "account1"
+    }
+  },
+  {
+    "namespace": "Store",
+    "object": "store2",
+    "relation": "managers",
+    "subject_set": {
+      "namespace": "Role",
+      "object": "managerStore2"
+    }
+  },
+  {
+    "namespace": "Store",
+    "object": "store2",
+    "relation": "Account",
+    "subject_set": {
+      "namespace": "Account",
+      "object": "account2"
     }
   },
   {
@@ -85,7 +130,25 @@
     "object": "account1",
     "relation": "orgs",
     "subject_set": {
+      "namespace": "Organization",
+      "object": "org1"
+    }
+  },
+  {
+    "namespace": "Account",
+    "object": "account2",
+    "relation": "admins",
+    "subject_set": {
       "namespace": "Role",
+      "object": "admin"
+    }
+  },
+  {
+    "namespace": "Account",
+    "object": "account2",
+    "relation": "orgs",
+    "subject_set": {
+      "namespace": "Organization",
       "object": "org1"
     }
   },
@@ -95,7 +158,7 @@
     "relation": "execs",
     "subject_set": {
       "namespace": "Role",
-      "object": "admin"
+      "object": "executive"
     }
   }
 ]
